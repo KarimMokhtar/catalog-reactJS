@@ -7,6 +7,7 @@ export default class Products extends Component{
             products : [],
             categoryId : -1,
             rate:0,
+            color:-1,
         }
     }
     componentDidMount(){
@@ -16,11 +17,14 @@ export default class Products extends Component{
                 this.setState({
                 products : res,
                 categoryId:this.props.currentCategory,
-                rate:this.props.rate})
+                rate:this.props.rate,
+                color:this.props.color,
+                flag:res.length == 0?true:false,
+                })
             )
     }
     componentDidUpdate(){
-        if(this.state.categoryId !== this.props.currentCategory || this.state.rate != this.props.rate)
+        if(this.state.categoryId !== this.props.currentCategory || this.state.rate !== this.props.rate || this.state.color !== this.props.color)
             fetch(this.props.prodeuctsAPI)
             .then(res=> res.json())
             .then(res=> 
@@ -28,6 +32,8 @@ export default class Products extends Component{
                 products : res,
                 categoryId:this.props.currentCategory,
                 rate:this.props.rate,
+                color:this.props.color,
+                flag:res.length == 0?true:false,
                 })
             )
     }
@@ -40,6 +46,9 @@ export default class Products extends Component{
                         <SingleProduct key={i} product={prod}/>
                     </div>
                 )}
+                {
+                    this.state.flag && <p>Sorry there are no products for these filter</p>
+                }
             </div>
         </div>;
     }

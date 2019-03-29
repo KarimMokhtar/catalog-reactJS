@@ -10,6 +10,7 @@ class App extends Component {
             currentCategory : -1,
             currentCategoryName :"All Categories",
             rate:0,
+            color:-1,
         }
         
     }
@@ -18,6 +19,9 @@ class App extends Component {
     }
     changeRate = rate =>{
         this.setState({rate})
+    }
+    changeColor = e =>{
+        this.setState({color:e.target.value?e.target.value:-1})
     }
     renderProducts(){
         let prodeuctsAPI="http://test-api.edfa3ly.io/product?", anotherFilter = "";
@@ -28,11 +32,14 @@ class App extends Component {
         if(this.state.rate !== 0 ){
             prodeuctsAPI += anotherFilter+"rating="+this.state.rate;
         }
-            
+        if(this.state.color !== -1){
+            prodeuctsAPI += anotherFilter+"color="+this.state.color;
+        }
         return <Products categoryName = {this.state.currentCategoryName}
                      prodeuctsAPI = {prodeuctsAPI}
                      currentCategory={this.state.currentCategory}
                      rate={this.state.rate}
+                     color={this.state.color}
                      />
     }
     render() {
@@ -45,7 +52,7 @@ class App extends Component {
                 </div>
                 <Catategory choseCategory={this.callBack} categoryAPI={categoryAPI}/>
                 <div style={{display:"flex"}}>
-                    <Filters changeRate = {this.changeRate}/>
+                    <Filters changeRate = {this.changeRate} changeColor={this.changeColor}/>
                     {this.renderProducts()}
                 </div>
             </div>  

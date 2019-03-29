@@ -12,7 +12,7 @@ export default class PriceFilter extends Component{
     }
     render(){
         return(
-            <div>price</div>
+            <div></div>
         );
     }
 }

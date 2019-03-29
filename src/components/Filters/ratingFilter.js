@@ -2,9 +2,6 @@ import React, {Component} from "react";
 export default class RatingFilter extends Component{
     constructor(props){
         super();
-        this.state = {
-            currentRating:0
-        }
     }
     render(){
         return(
@@ -45,6 +42,7 @@ export default class RatingFilter extends Component{
                     <li className="fa fa-star disable"></li>
                     <li className="fa fa-star disable"></li>
                 </ul>
+                <p style={{cursor:"pointer"}} onClick={()=>this.props.changeRate(0)}><span style={{fontWeight: "bold"}}>x</span> clear</p>
             </div>
         );
     }
