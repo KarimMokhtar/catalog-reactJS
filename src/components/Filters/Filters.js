@@ -1,5 +1,6 @@
 import React ,{Component} from "react"
-
+import PriceFilter from "./priceFilter"
+import RatingFilter from "./ratingFilter"
 export default class Filters extends Component{
     constructor(props){
         super();
@@ -9,8 +10,9 @@ export default class Filters extends Component{
     }
     render(){
         return(
-            <div>
-                helloooooooooooo
+            <div className="filtersdiv">
+                <PriceFilter />
+                <RatingFilter changeRate = {this.props.changeRate}/>
             </div>
         )
     }

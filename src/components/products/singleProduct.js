@@ -27,6 +27,7 @@ export default class SingleProduct extends Component{
                 <div className="product-content">
                     <h3 className="title">{product.name}</h3>
                     <div className="price">${product.price}
+                    <h4 >color <span style={{color:product.color,background:product.color==="white" || product.color==="ivory"?"black":""}}>{product.color}</span></h4>
                     </div>
                 </div>
 

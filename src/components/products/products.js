@@ -5,22 +5,30 @@ export default class Products extends Component{
         super();
         this.state={
             products : [],
-            categoryId : -1
+            categoryId : -1,
+            rate:0,
         }
     }
     componentDidMount(){
         fetch(this.props.prodeuctsAPI)
             .then(res=> res.json())
             .then(res=> 
-                this.setState({products : res,categoryId:this.props.currentCategory})
+                this.setState({
+                products : res,
+                categoryId:this.props.currentCategory,
+                rate:this.props.rate})
             )
     }
     componentDidUpdate(){
-        if(this.state.categoryId !== this.props.currentCategory)
+        if(this.state.categoryId !== this.props.currentCategory || this.state.rate != this.props.rate)
             fetch(this.props.prodeuctsAPI)
             .then(res=> res.json())
             .then(res=> 
-                this.setState({products : res,categoryId:this.props.currentCategory})
+                this.setState({
+                products : res,
+                categoryId:this.props.currentCategory,
+                rate:this.props.rate,
+                })
             )
     }
     render(){
