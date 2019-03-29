@@ -1,0 +1,36 @@
+import React, { Component } from "react";
+export default class SingleProduct extends Component{
+    constructor(props){
+        super();
+        this.state={}
+    }
+    ratingDraw(n){
+        let arr = []
+        for(let i = 0 ; i < 5 ; ++i){
+            arr.push(<li key={i} className="fa fa-star disable"></li>)
+        }
+        for(let i = 0 ; i < n ; ++i){
+            arr[i]=<li key={i} className="fa fa-star"></li>
+        }
+        return arr;
+    }
+    render(){
+        const product = this.props.product;
+        return(
+            <div className="product-grid">
+                <div className="product-image">
+                    <img className="img-fluid" src={product.image} alt={product.name} />
+                </div>
+                <ul className="rating">
+                    {this.ratingDraw(product.rating)}
+                </ul>
+                <div className="product-content">
+                    <h3 className="title">{product.name}</h3>
+                    <div className="price">${product.price}
+                    </div>
+                </div>
+
+            </div>
+        );
+    }
+}

@@ -1,28 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { Component } from "react";
+import "./App.css";
+import Catategory from "./components/category";
+import Products from "./components/products/products"
+import Filters from "./components/Filters/Filters"
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor(props){
+        super();
+        this.state={
+            currentCategory : -1,
+            currentCategoryName :"All Categories",
+        }
+        
+    }
+    callBack = (id,name) =>{
+        this.setState({currentCategory:id,currentCategoryName:name})
+    }
+    render() {
+        const categoryAPI = "http://test-api.edfa3ly.io/category", prodeuctsAPI="http://test-api.edfa3ly.io/product"
+        return (
+            <div className="App">
+                <div style={{textAlign:"center"}}>
+                    <h1>Our e-commerce store</h1>
+                    <p>Choose one of our categories</p>
+                </div>
+                <Catategory choseCategory={this.callBack} categoryAPI={categoryAPI}/>
+                <Filters />
+                <Products categoryName = {this.state.currentCategoryName} prodeuctsAPI={this.state.currentCategory!==-1? prodeuctsAPI+"?categoryId="+this.state.currentCategory : prodeuctsAPI} currentCategory={this.state.currentCategory}/>
+                
+            </div>
+        );
+    }
 }
 
 export default App;
